@@ -111,11 +111,11 @@ export default function ChatBot() {
       {!isOpen && (
         <button
           onClick={() => setIsOpen(true)}
-          className="fixed bottom-6 right-6 w-16 h-16 bg-linear-to-r from-blue-600 to-purple-600 rounded-full shadow-2xl flex items-center justify-center hover:scale-110 transition-transform z-50 group"
+          className="fixed bottom-6 right-6 w-16 h-16 bg-yellow-400 rounded-full shadow-2xl flex items-center justify-center hover:scale-110 transition-transform z-50 group border border-yellow-300"
           aria-label="Open chat"
         >
           <svg
-            className="w-8 h-8 text-white"
+            className="w-8 h-8 text-black"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -127,19 +127,19 @@ export default function ChatBot() {
               d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"
             />
           </svg>
-          <span className="absolute -top-1 -right-1 w-4 h-4 bg-green-500 rounded-full animate-pulse"></span>
+          <span className="absolute -top-1 -right-1 w-4 h-4 bg-yellow-300 rounded-full animate-pulse"></span>
         </button>
       )}
 
       {/* Chat Window */}
       {isOpen && (
-        <div className="fixed bottom-6 right-6 w-96 h-150 bg-white rounded-2xl shadow-2xl flex flex-col z-50 border border-gray-200">
+        <div className="fixed bottom-6 right-6 w-96 h-150 bg-black rounded-2xl shadow-2xl flex flex-col z-50 border border-zinc-800">
           {/* Header */}
-          <div className="bg-linear-to-r from-blue-600 to-purple-600 text-white p-4 rounded-t-2xl flex justify-between items-center">
+          <div className="bg-zinc-900 text-zinc-100 p-4 rounded-t-2xl flex justify-between items-center border-b border-zinc-800">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center backdrop-blur">
+              <div className="w-10 h-10 bg-yellow-400 rounded-full flex items-center justify-center">
                 <svg
-                  className="w-6 h-6"
+                  className="w-6 h-6 text-black"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -153,13 +153,15 @@ export default function ChatBot() {
                 </svg>
               </div>
               <div>
-                <div className="font-semibold">AI Assistant</div>
-                <div className="text-xs text-blue-100">Co-browsing enabled</div>
+                <div className="font-semibold">Assistant</div>
+                <div className="text-xs text-yellow-300">
+                  Co-browsing enabled
+                </div>
               </div>
             </div>
             <button
               onClick={() => setIsOpen(false)}
-              className="text-white hover:bg-white/20 rounded-lg p-2 transition-colors"
+              className="text-zinc-200 hover:bg-zinc-800 rounded-lg p-2 transition-colors"
               aria-label="Close chat"
             >
               <svg
@@ -179,7 +181,7 @@ export default function ChatBot() {
           </div>
 
           {/* Messages */}
-          <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-gray-50">
+          <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-black">
             {messages.map((message, index) => (
               <div
                 key={index}
@@ -190,24 +192,24 @@ export default function ChatBot() {
                 <div
                   className={`max-w-[80%] rounded-2xl px-4 py-2 ${
                     message.role === "user"
-                      ? "bg-linear-to-r from-blue-600 to-purple-600 text-white"
-                      : "bg-white text-gray-800 shadow-md border border-gray-200"
+                      ? "bg-yellow-400 text-black"
+                      : "bg-zinc-900 text-zinc-100 border border-zinc-800"
                   }`}
                 >
                   <p className="text-sm whitespace-pre-wrap">
                     {message.content}
                   </p>
                   {message.actions && message.actions.length > 0 && (
-                    <div className="mt-2 pt-2 border-t border-gray-200">
-                      <p className="text-xs text-gray-500 mb-1">
+                    <div className="mt-2 pt-2 border-t border-zinc-800">
+                      <p className="text-xs text-zinc-400 mb-1">
                         Actions performed:
                       </p>
                       {message.actions.map((action, i) => (
                         <div
                           key={i}
-                          className="text-xs text-gray-600 flex items-center gap-1"
+                          className="text-xs text-zinc-300 flex items-center gap-1"
                         >
-                          <span className="text-green-500">✓</span>
+                          <span className="text-yellow-300">✓</span>
                           {action.type === "scroll" &&
                             `Scrolled to ${action.target}`}
                           {action.type === "navigate" &&
@@ -228,11 +230,11 @@ export default function ChatBot() {
             ))}
             {isLoading && (
               <div className="flex justify-start">
-                <div className="bg-white rounded-2xl px-4 py-3 shadow-md border border-gray-200">
+                <div className="bg-zinc-900 rounded-2xl px-4 py-3 border border-zinc-800">
                   <div className="flex space-x-2">
-                    <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"></div>
-                    <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce delay-100"></div>
-                    <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce delay-200"></div>
+                    <div className="w-2 h-2 bg-yellow-300 rounded-full animate-bounce"></div>
+                    <div className="w-2 h-2 bg-yellow-300 rounded-full animate-bounce delay-100"></div>
+                    <div className="w-2 h-2 bg-yellow-300 rounded-full animate-bounce delay-200"></div>
                   </div>
                 </div>
               </div>
@@ -241,7 +243,7 @@ export default function ChatBot() {
           </div>
 
           {/* Input */}
-          <div className="p-4 border-t border-gray-200 bg-white rounded-b-2xl">
+          <div className="p-4 border-t border-zinc-800 bg-black rounded-b-2xl">
             <div className="flex gap-2">
               <input
                 type="text"
@@ -249,13 +251,13 @@ export default function ChatBot() {
                 onChange={(e) => setInput(e.target.value)}
                 onKeyPress={handleKeyPress}
                 placeholder="Ask me anything..."
-                className="flex-1 px-4 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
+                className="flex-1 px-4 py-2 border border-zinc-700 bg-black text-zinc-100 rounded-full focus:outline-none focus:ring-2 focus:ring-yellow-400 text-sm placeholder-zinc-500"
                 disabled={isLoading}
               />
               <button
                 onClick={handleSend}
                 disabled={isLoading || !input.trim()}
-                className="bg-linear-to-r from-blue-600 to-purple-600 text-white rounded-full p-2 hover:opacity-90 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed"
+                className="bg-yellow-400 text-black rounded-full p-2 hover:bg-yellow-300 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                 aria-label="Send message"
               >
                 <svg
